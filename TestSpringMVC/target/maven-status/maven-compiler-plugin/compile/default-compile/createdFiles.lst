@@ -1,0 +1,5 @@
+weight\tracker\model\Alerts.class
+weight\tracker\controller\Application.class
+weight\tracker\controller\MetricsDAO.class
+weight\tracker\model\Metrics.class
+weight\tracker\controller\MetricsController.class
