@@ -1,4 +1,6 @@
-package weight.tracker.controller;
+package weight.tracker.rules;
+
+import java.net.UnknownHostException;
 
 import org.easyrules.annotation.Action;
 import org.easyrules.annotation.Condition;
@@ -27,7 +29,7 @@ public class UnderWeightRule {
 		return false;
 	}
 	@Action
-	public void then() {
+	public void then() throws UnknownHostException {
 		Alerts alert = new Alerts(metrics.getId(), "UnderWeight");
     	//save alerts
     	MongoClient mongoClient = new MongoClient("localhost", 27017);

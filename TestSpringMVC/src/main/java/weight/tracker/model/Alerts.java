@@ -18,7 +18,5 @@ public class Alerts {
 		return alert;
 	}
 
-	public void setAlert(String alert) {
-		this.alert = alert;
-	}
+	
 }

@@ -1,4 +1,4 @@
-package weight.tracker.controller;
+package weight.tracker.dao;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.dao.BasicDAO;
 

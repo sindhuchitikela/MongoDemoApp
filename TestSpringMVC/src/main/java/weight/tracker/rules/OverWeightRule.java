@@ -1,4 +1,6 @@
-package weight.tracker.controller;
+package weight.tracker.rules;
+
+import java.net.UnknownHostException;
 
 import org.easyrules.annotation.Action;
 import org.easyrules.annotation.Condition;
@@ -28,13 +30,13 @@ public class OverWeightRule {
 	}
 
 	@Action
-	public void then() {
+	public void then() throws UnknownHostException {
 		Alerts alert = new Alerts(metrics.getId(), "OverWeight");
     	//save alerts
     	MongoClient mongoClient = new MongoClient("localhost", 27017);
  		final Morphia morphia = new Morphia();
  		morphia.map(Alerts.class); 	        
  	    final Datastore datastore = morphia.createDatastore(mongoClient, dbName);
-		datastore.save(alert);	
+		datastore.save(alert);
 	}
 }
