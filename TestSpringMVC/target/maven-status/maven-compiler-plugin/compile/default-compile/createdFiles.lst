@@ -1,5 +1,5 @@
+weight\tracker\controller\WeightTrackerApplication.class
 weight\tracker\model\Alerts.class
-weight\tracker\controller\Application.class
 weight\tracker\rules\UnderWeightRule.class
 weight\tracker\controller\AlertsController.class
 weight\tracker\rules\OverWeightRule.class

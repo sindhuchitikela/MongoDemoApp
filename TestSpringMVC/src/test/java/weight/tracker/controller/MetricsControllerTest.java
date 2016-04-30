@@ -1,70 +1,43 @@
 //package weight.tracker.controller;
 //
-//import javax.servlet.http.HttpServletResponse;
+//import static org.hamcrest.Matchers.equalTo;
+//import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 //
-//public class MetricsControllerTest<MetricsController> {
-//	MetricsController metricsController;
+//import java.util.Collections;
 //
-//	@Mock
-//	MetricsController metricsController;
-//	@Mock
-//	HttpServletResponse httpServletResponse;
-//	@Mock
-//	
-//	@Mock
-//	UriInfo uriInfo;
-//	@Mock
-//	UriBuilder uriBuilder;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.springframework.boot.test.IntegrationTest;
+//import org.springframework.boot.test.SpringApplicationConfiguration;
+//import org.springframework.boot.test.TestRestTemplate;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//import org.springframework.test.context.web.WebAppConfiguration;
+//import org.springframework.web.client.RestTemplate;
 //
-//	URI uri;
-//	final String BASE_URI = "http://localhost/";
-//	Validator validator;
+//import weight.tracker.model.Metrics;
 //
-//	@Before
-//	public void before() throws Exception {
-//		MockitoAnnotations.initMocks(this);
-//
-//	
-//		when(uriInfo.getRequestUriBuilder()).thenReturn(uriBuilder);
-//		class UriBuilderState {
-//			Map<String, Object> map = new HashMap<String, Object>();
-//		}
-//		
-//		final UriBuilderState uriBuilderState = new UriBuilderState();
-//		when(uriBuilder.replaceQueryParam(anyString(), any())).thenAnswer(new Answer<UriBuilder>() {
-//
-//			@Override
-//			public UriBuilder answer(final InvocationOnMock invocation) throws Throwable {
-//				uriBuilderState.map.put((String) invocation.getArguments()[0], invocation.getArguments()[1]);
-//				return (UriBuilder) invocation.getMock();
-//			}
-//		});
-//		when(uriBuilder.build()).thenAnswer(new Answer<URI>() {
-//
-//			@Override
-//			public URI answer(final InvocationOnMock invocation) throws Throwable {
-//				String s = BASE_URI;
-//				boolean first = true;
-//				for (final Entry<String, Object> entry : uriBuilderState.map.entrySet()) {
-//					if (first) {
-//						s += "?";
-//						first = false;
-//					} else {
-//						s += "&";
-//					}
-//					s += entry.getKey();
-//					s += "=";
-//					s += entry.getValue();
-//				}
-//				return new URI(s);
-//			}
-//		});
-//	}
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = WeightTrackerApplication.class)
+//public class MetricsControllerTest {
+//	final String BASE_URL = "http://localhost:8080/";
 //
 //	@Test
-//	public void testGetLocationByIDs() throws Exception {
-//		final URI uri = new URI(BASE_URI);
-//		when(uriInfo.getAbsolutePath()).thenReturn(uri);
+//	public void testCreateMetrics() {
 //
+//		Metrics metrics = new Metrics();
+//		metrics.setValue("150");// weight
+//		metrics.setBaseWeight("120");// base weight of this person
+//		metrics.setTimeStamp(String.valueOf(System.currentTimeMillis()));
+//
+//		RestTemplate rest = new TestRestTemplate();
+//
+//		ResponseEntity<Metrics> response = rest.postForEntity(BASE_URL, metrics, Metrics.class, Collections.EMPTY_MAP);
+//		assertThat(response.getStatusCode(), equalTo(HttpStatus.CREATED));
+//
+//		Metrics metricsCreated = response.getBody();
+//		System.out.println(metricsCreated);
 //	}
+//
 //}

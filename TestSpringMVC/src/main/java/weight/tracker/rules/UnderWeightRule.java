@@ -10,8 +10,8 @@ import weight.tracker.model.Metrics;
 
 @Rule(name = "under weight rule")
 public class UnderWeightRule {
-
-	Metrics metrics;
+	final static String UNDER_WEIGHT_INDICATOR = "OverWeight";
+	private Metrics metrics;
 	private boolean executed;
 
 	public UnderWeightRule(Metrics metrics) {
@@ -20,7 +20,8 @@ public class UnderWeightRule {
 
 	@Condition
 	public boolean when() {
-		if (Double.parseDouble(metrics.getValue()) <= 18.5) {
+		double baseWt = Double.parseDouble(metrics.getBaseWeight());
+		if (Double.parseDouble(metrics.getValue()) < (0.1 * baseWt + baseWt)){//If weight drop below 10% of the base weight
 			return true;
 		}
 		return false;
@@ -36,6 +37,6 @@ public class UnderWeightRule {
 	}
 
 	public String getResult() {
-		return "UnderWeight";
+		return UNDER_WEIGHT_INDICATOR;
 	}
 }

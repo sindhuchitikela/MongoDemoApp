@@ -10,8 +10,8 @@ import weight.tracker.model.Metrics;
 
 @Rule(name = "over weight rule")
 public class OverWeightRule {
-
-	Metrics metrics;
+	final static String OVER_WEIGHT_INDICATOR = "OverWeight";
+	private Metrics metrics;
 	private boolean executed;
 
 	public OverWeightRule(Metrics metrics) {
@@ -20,7 +20,8 @@ public class OverWeightRule {
 
 	@Condition
 	public boolean when() {
-		if (Double.parseDouble(metrics.getValue()) > 18.5) {
+		double baseWt = Double.parseDouble(metrics.getBaseWeight());
+		if (Double.parseDouble(metrics.getValue()) > (baseWt + 0.1* baseWt)){ //If weight shoot 10% over his base weight
 			return true;
 		}
 		return false;
@@ -36,6 +37,6 @@ public class OverWeightRule {
 	}
 
 	public String getResult() {
-		return "OverWeight";
+		return OVER_WEIGHT_INDICATOR;
 	}
 }
