@@ -1,0 +1,5 @@
+1)Assuming that person will register:
+PersonID, BaseWeight will be stored in Person Collection
+
+Future Enhancements:
+Pagination(marker and limit)

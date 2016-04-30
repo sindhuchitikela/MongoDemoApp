@@ -1,22 +1,27 @@
 package weight.tracker.model;
+import java.util.Date;
+import org.mongodb.morphia.annotations.Embedded;
 
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
+@Embedded
+public class Alerts {	
+	private String alert; //UnderWeight or OverWeight
+	private Date timeStamp;
+	
+	public String getTimeStamp() {
+		return Long.toString(this.timeStamp.getTime());
+	}
 
-@Entity
-public class Alerts {
-	@Id
-	String id;
-	String alert;
+	public void setTimeStamp(String timeStamp) {
+		if (timeStamp instanceof String) {
+			this.timeStamp = new Date(Long.parseLong(timeStamp));
+		}
+	}
 
-	public Alerts(String id, String alert) {
-		this.id = id;
+	public void setAlert(String alert) {
 		this.alert = alert;
 	}
-
+	
 	public String getAlert() {
 		return alert;
-	}
-
-	
+	}	
 }
