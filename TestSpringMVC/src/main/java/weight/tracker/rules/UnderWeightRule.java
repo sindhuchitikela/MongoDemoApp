@@ -10,7 +10,7 @@ import weight.tracker.model.Metrics;
 
 @Rule(name = "under weight rule")
 public class UnderWeightRule {
-	final static String UNDER_WEIGHT_INDICATOR = "OverWeight";
+	final static String UNDER_WEIGHT_INDICATOR = "UnderWeight";
 	private Metrics metrics;
 	private boolean executed;
 

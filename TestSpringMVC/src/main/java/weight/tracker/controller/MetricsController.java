@@ -50,8 +50,8 @@ public class MetricsController {
 
 	/**
 	 * Reads the input request body, creates and saves metrics and alerts in the
-	 * database
-	 * 
+	 * database.
+	 * Sample request body:{"value":"1","baseWeight":"100","timeStamp":"12345566777"}
 	 * @param metrics
 	 *            Metrics request body
 	 * @return response object which indicates if the save is successful

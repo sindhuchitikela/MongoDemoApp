@@ -1,5 +1,40 @@
-1)Assuming that person will register:
-PersonID, BaseWeight will be stored in Person Collection
+This application uses two datamodels: Metrics, Alerts
 
-Future Enhancements:
-Pagination(marker and limit)
+1) I have assumed that base weight is passed in by the sensor along with the current weight and time stamp. Even though it is not an optimized logic, for time being I have assumed so.
+Future Enhancement Ideas: First, a person can register with this weight tracker application.
+During the time of registration, he can enter his weight(which will be stored as base weight), ID(person id) and other details.
+This can be a one time registration of this person. All the data can be stored in Person collection.
+Each person can be tied to metrics collection with a one-many mapping.
+
+2) Another future enhancement: We can use swagger documentation for better look and feel of the APIs
+
+
+===========API USAGE==================
+Create Metrics call:
+URI: http://localhost:8080/createMetrics
+Request object looks like
+{"value":"1","baseWeight":"100","timeStamp":"12345566777"}
+======================================
+Read Metrics call:
+http://localhost:8080/readMetrics/
+======================================
+Read Metrics by time range call:
+http://localhost:8080/readMetricsByTimeRange?min=12&max=1461887500754
+======================================
+Read Alerts call:
+http://localhost:8080/readAlerts
+=====================================
+Read Alerts by time range call:
+http://localhost:8080/readAlertsByTimeRange?min=1&max=1000000000000000
+=====================================
+
+
+
+
+
+
+
+
+
+
+	
