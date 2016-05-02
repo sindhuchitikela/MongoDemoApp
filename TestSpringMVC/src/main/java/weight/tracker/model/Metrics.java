@@ -53,7 +53,7 @@ public class Metrics {
 	}
 
 	public String getTimeStamp() {
-		return Long.toString(this.timeStamp.getTime());
+		return String.valueOf(timeStamp.getTime());
 	}	
 	
 }

@@ -1,12 +1,16 @@
-This application uses two datamodels: Metrics, Alerts
-
-1) I have assumed that base weight is passed in by the sensor along with the current weight and time stamp. Even though it is not an optimized logic, for time being I have assumed so.
+1) The application uses two datamodels: Metrics, Alerts
+I have assumed that base weight is passed in by the sensor along with the current weight and time stamp. Even though it is not an optimized logic, for time being I have assumed so.
 Future Enhancement Ideas: First, a person can register with this weight tracker application.
 During the time of registration, he can enter his weight(which will be stored as base weight), ID(person id) and other details.
 This can be a one time registration of this person. All the data can be stored in Person collection.
 Each person can be tied to metrics collection with a one-many mapping.
 
-2) Another future enhancement: We can use swagger documentation for better look and feel of the APIs
+2) Future enhancements: We can use swagger documentation for better look and feel of the APIs.
+Also, Pagination can be added to these APIs
+
+3) Pre-requisites:
+MongoDB should be up and running on your machine. Run the spring boot application.
+Rest API apps such as postman or Application REST Client can be used to test the APIs 
 
 
 ===========API USAGE==================
@@ -26,7 +30,19 @@ http://localhost:8080/readAlerts
 =====================================
 Read Alerts by time range call:
 http://localhost:8080/readAlertsByTimeRange?min=1&max=1000000000000000
-=====================================
+
+
+============Automated Tests=========
+I have written automated JUNITs for all the modules and Integration tests for the RestController APIs
+
+============Instructions for running the integration tests==========
+ * To run these tests, Springboot application should be running.
+ Maven command to run the project: 
+ mvn spring-boot:run 
+ 
+ * To run the springboot app, mongodb should be running
+ 
+
 
 
 
