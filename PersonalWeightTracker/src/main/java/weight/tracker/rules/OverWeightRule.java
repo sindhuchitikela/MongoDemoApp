@@ -21,7 +21,14 @@ public class OverWeightRule {
 	@Condition
 	public boolean when() {
 		double baseWt = Double.parseDouble(metrics.getBaseWeight());
-		if (Double.parseDouble(metrics.getValue()) > (baseWt + 0.1* baseWt)){ //If weight shoot 10% over his base weight
+		if (Double.parseDouble(metrics.getValue()) > (baseWt + 0.1 * baseWt)) { // If
+																				// weight
+																				// shoot
+																				// 10%
+																				// over
+																				// his
+																				// base
+																				// weight
 			return true;
 		}
 		return false;

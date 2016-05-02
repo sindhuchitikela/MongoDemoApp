@@ -20,13 +20,13 @@ public class UnderWeightRuleTest {
 
 		// fire OverWeightRule on this data
 		UnderWeightRule underWtRule = fireRules(metrics);
-		assertFalse(underWtRule.isExecuted());	
+		assertFalse(underWtRule.isExecuted());
 	}
-	
+
 	@Test
 	public void testOverWeightTrueCase() {
 		Metrics metrics = new Metrics();
-		metrics.setValue("90");// weight 
+		metrics.setValue("90");// weight
 		metrics.setBaseWeight("120");// base weight of this person
 		metrics.setTimeStamp(String.valueOf(System.currentTimeMillis()));
 
@@ -36,18 +36,18 @@ public class UnderWeightRuleTest {
 		assertEquals(UnderWeightRule.UNDER_WEIGHT_INDICATOR, underWtRule.getResult());
 	}
 
-	//=================Test Helper Methods=============
+	// =================Test Helper Methods=============
 	private UnderWeightRule fireRules(Metrics metrics) {
 		// create a rules engine
 		RulesEngine rulesEngine = aNewRulesEngine().build();
 
 		// register the rule
-		UnderWeightRule underWtRule= new UnderWeightRule(metrics);
+		UnderWeightRule underWtRule = new UnderWeightRule(metrics);
 		rulesEngine.registerRule(underWtRule);
 
 		// fire rules
 		rulesEngine.fireRules();
-		
+
 		return underWtRule;
 	}
 }

@@ -12,9 +12,9 @@ public class Metrics {
 	@Id
 	private String id; // auto-generated ID for each metrics entry
 	private String value; // weight
-	private String baseWeight; //base weight of this person
+	private String baseWeight; // base weight of this person
 	private Date timeStamp; // timeStamp read from the sensor
-	
+
 	@Embedded
 	Alerts alert;
 
@@ -33,7 +33,7 @@ public class Metrics {
 	public void setBaseWeight(String baseWeight) {
 		this.baseWeight = baseWeight;
 	}
-	
+
 	public void setTimeStamp(String timeStamp) {
 		if (timeStamp instanceof String) {
 			this.timeStamp = new Date(Long.parseLong(timeStamp));
@@ -43,7 +43,7 @@ public class Metrics {
 	public String getId() {
 		return id;
 	}
-	
+
 	public String getValue() {
 		return value;
 	}
@@ -54,6 +54,6 @@ public class Metrics {
 
 	public String getTimeStamp() {
 		return String.valueOf(timeStamp.getTime());
-	}	
-	
+	}
+
 }

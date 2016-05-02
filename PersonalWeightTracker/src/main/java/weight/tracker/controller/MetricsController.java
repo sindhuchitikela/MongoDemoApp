@@ -38,7 +38,8 @@ public class MetricsController {
 	private MetricsDAO metricsDao;
 	private Datastore datastore;
 
-	public MetricsController() {
+	public MetricsController() throws UnknownHostException {
+		try{
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		final Morphia morphia = new Morphia();
 		morphia.map(Metrics.class, Alerts.class);
@@ -46,6 +47,9 @@ public class MetricsController {
 		// initialize datastore and metrics DAO
 		datastore = morphia.createDatastore(mongoClient, WeightTrackerApplication.DATABASE_NAME);
 		metricsDao = new MetricsDAO(mongoClient, morphia, WeightTrackerApplication.DATABASE_NAME);
+		} catch (UnknownHostException e) {
+			System.out.println("Exception occurred while establishing connection to MongoDB or creating the database");
+		}
 	}
 
 	/**

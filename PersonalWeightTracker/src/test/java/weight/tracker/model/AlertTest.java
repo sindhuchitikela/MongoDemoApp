@@ -4,20 +4,20 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class AlertTest{
+public class AlertTest {
 
 	@Test
-	public void testAlertsBuild(){		
-		//prepare test data
+	public void testAlertsBuild() {
+		// prepare test data
 		String timeStamp = Long.toString(System.currentTimeMillis());
 		String alert = "overWeight";
-		
-		//invoke the method to test
+
+		// invoke the method to test
 		Alerts alerts = new Alerts();
 		alerts.setAlert(alert);
 		alerts.setTimeStamp(timeStamp);
-		
-		//assert the values
+
+		// assert the values
 		assertEquals(alert, alerts.getAlert());
 		assertEquals(timeStamp, alerts.getTimeStamp());
 	}

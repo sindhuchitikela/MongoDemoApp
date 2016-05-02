@@ -25,11 +25,11 @@ public class OverWeightRuleTest {
 		assertTrue(overWtRule.isExecuted());
 		assertEquals(OverWeightRule.OVER_WEIGHT_INDICATOR, overWtRule.getResult());
 	}
-	
+
 	@Test
 	public void testOverWeightFalseCase() {
 		Metrics metrics = new Metrics();
-		metrics.setValue("90");// weight 
+		metrics.setValue("90");// weight
 		metrics.setBaseWeight("120");// base weight of this person
 		metrics.setTimeStamp(String.valueOf(System.currentTimeMillis()));
 
@@ -40,7 +40,7 @@ public class OverWeightRuleTest {
 		assertFalse(overWtRule.isExecuted());
 	}
 
-	//=================Test Helper Methods=============
+	// =================Test Helper Methods=============
 	private OverWeightRule fireRules(Metrics metrics) {
 		// create a rules engine
 		RulesEngine rulesEngine = aNewRulesEngine().build();
@@ -51,7 +51,7 @@ public class OverWeightRuleTest {
 
 		// fire rules
 		rulesEngine.fireRules();
-		
+
 		return overWtRule;
 	}
 }

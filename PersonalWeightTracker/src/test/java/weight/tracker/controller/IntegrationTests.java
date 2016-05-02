@@ -26,8 +26,8 @@ import com.google.gson.JsonParseException;
 import weight.tracker.model.Metrics;
 
 /**
- * To run these tests, Springboot application should be running.
- * To run the springboot app, mongodb should be running
+ * To run these tests, Springboot application should be running. To run the
+ * springboot app, mongodb should be running
  * 
  *
  */
@@ -35,7 +35,7 @@ public class IntegrationTests {
 	final String BASE_URL = "http://localhost:8080/";
 
 	@Test
-	public void testCreateMetrics() {
+	public void testAPIs() {
 		String testBaseWeight = "120";
 
 		Calendar cal = Calendar.getInstance(); // current date and time
@@ -47,7 +47,7 @@ public class IntegrationTests {
 		String testTimeStamp2 = String.valueOf(cal.getTimeInMillis());
 
 		Metrics metrics1 = new Metrics();
-		metrics1.setValue("119");// weight
+		metrics1.setValue("101");// weight
 		metrics1.setBaseWeight(testBaseWeight);// base weight of this person
 		metrics1.setTimeStamp(testTimeStamp1);
 
@@ -58,7 +58,7 @@ public class IntegrationTests {
 
 		RestTemplate rest = new TestRestTemplate();
 
-		// ===========Test Metrics POST call=============		
+		// ===========Test Metrics POST call=============
 		ResponseEntity<Metrics> postResponse = rest.postForEntity(BASE_URL + "createMetrics", metrics1, Metrics.class,
 				Collections.<String, Object> emptyMap());
 		assertEquals(HttpStatus.OK, postResponse.getStatusCode());
@@ -72,8 +72,9 @@ public class IntegrationTests {
 
 		// check if the metrics saved in previous call are returned
 		assertMetricsResults(getResponse, metrics1, true, metrics2, true);
-		
-		// =============Test Metrics GET with in time range call==================
+
+		// =============Test Metrics GET with in time range
+		// call==================
 		cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_MONTH, 1);
 		String min = String.valueOf(cal.getTimeInMillis());
@@ -83,23 +84,25 @@ public class IntegrationTests {
 		String max = String.valueOf(cal.getTimeInMillis());
 		getResponse = rest.getForObject(BASE_URL + "readMetricsByTimeRange?min=" + min + "&max=" + max, List.class);
 		// check if the metrics saved in previous call are returned
-		assertMetricsResults(getResponse, metrics1, true, metrics2, false);	
-		
-		//==============Test Alerts GET call==========================
+		assertMetricsResults(getResponse, metrics1, true, metrics2, false);
+
+		// ==============Test Alerts GET call==========================
 		ResponseEntity<List> getAlertsResponse = rest.getForEntity(BASE_URL + "readAlerts", List.class);
 		assertEquals(HttpStatus.OK, getAlertsResponse.getStatusCode());
 		assertFalse(getAlertsResponse.getBody().isEmpty());
-		assertTrue(getAlertsResponse.getBody().size()>2);
-		
-		//==============Test Alerts by time range GET call===
-		getAlertsResponse = rest.getForEntity(BASE_URL + "readAlertsByTimeRange?min=" + min + "&max=" + max, List.class);
+		assertTrue(getAlertsResponse.getBody().size() > 2);
+
+		// ==============Test Alerts by time range GET call===
+		getAlertsResponse = rest.getForEntity(BASE_URL + "readAlertsByTimeRange?min=" + min + "&max=" + max,
+				List.class);
 		assertEquals(HttpStatus.OK, getAlertsResponse.getStatusCode());
 		assertFalse(getAlertsResponse.getBody().isEmpty());
-		assertTrue(getAlertsResponse.getBody().size()>2);
+		assertTrue(getAlertsResponse.getBody().size() > 2);
 	}
-	
-	//==================Helper methods================
-	public void assertMetricsResults(List getResponse, Metrics metrics1, boolean metrics1Exist, Metrics metrics2, boolean metrics2Exist){
+
+	// ==================Helper methods================
+	public void assertMetricsResults(List getResponse, Metrics metrics1, boolean metrics1Exist, Metrics metrics2,
+			boolean metrics2Exist) {
 		boolean expectedValue1Found = false, expectedValue2Found = false;
 		for (Object getResponseBody : getResponse) {
 			GsonBuilder gson = new GsonBuilder().setDateFormat(DateFormat.FULL).registerTypeAdapter(Date.class,
@@ -119,7 +122,8 @@ public class IntegrationTests {
 		assertEquals(metrics1Exist, expectedValue1Found);
 		assertEquals(metrics2Exist, expectedValue2Found);
 	}
-	//===============Helper Class=======================
+
+	// ===============Helper Class=======================
 	public class DateDeserializer implements JsonDeserializer<Date> {
 
 		@Override

@@ -21,7 +21,15 @@ public class UnderWeightRule {
 	@Condition
 	public boolean when() {
 		double baseWt = Double.parseDouble(metrics.getBaseWeight());
-		if (Double.parseDouble(metrics.getValue()) < (0.1 * baseWt + baseWt)){//If weight drop below 10% of the base weight
+		if (Double.parseDouble(metrics.getValue()) < (0.1 * baseWt + baseWt)) {// If
+																				// weight
+																				// drop
+																				// below
+																				// 10%
+																				// of
+																				// the
+																				// base
+																				// weight
 			return true;
 		}
 		return false;

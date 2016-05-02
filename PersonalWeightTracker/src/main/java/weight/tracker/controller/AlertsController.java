@@ -28,18 +28,23 @@ public class AlertsController {
 	private AlertsDAO alertDao;
 	private Datastore datastore;
 
-	public AlertsController() {
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		final Morphia morphia = new Morphia();
-		morphia.map(Alerts.class);
+	public AlertsController() throws UnknownHostException {
+		try {
+			MongoClient mongoClient = new MongoClient("localhost", 27017);
+			final Morphia morphia = new Morphia();
+			morphia.map(Alerts.class);
 
-		// initialize datastore and alerts DAO
-		datastore = morphia.createDatastore(mongoClient, WeightTrackerApplication.DATABASE_NAME);
-		alertDao = new AlertsDAO(mongoClient, morphia, WeightTrackerApplication.DATABASE_NAME);
+			// initialize datastore and alerts DAO
+			datastore = morphia.createDatastore(mongoClient, WeightTrackerApplication.DATABASE_NAME);
+			alertDao = new AlertsDAO(mongoClient, morphia, WeightTrackerApplication.DATABASE_NAME);
+		} catch (UnknownHostException e) {
+			System.out.println("Exception occurred while establishing connection to MongoDB or creating the database");
+		}
 	}
 
 	/**
-	 * Reads all weight alerts from the database. Sample URI to use: http://localhost:8080/readAlerts
+	 * Reads all weight alerts from the database. Sample URI to use:
+	 * http://localhost:8080/readAlerts
 	 * 
 	 * @return a list of Alerts objects in JSON format
 	 * @throws UnknownHostException
